@@ -15,7 +15,8 @@
  * 
  */
 
- 
+
+
 import { STORAGE_TYPES, storageContainer } from "@symlinkde/eco-os-pk-storage";
 import { bootstrapperContainer } from "@symlinkde/eco-os-pk-core";
 import Config from "config";
@@ -50,6 +51,7 @@ export class ContentService implements PkStorageContent.IContentService {
     return result;
   }
 
+  // tslint:disable-next-line: cyclomatic-complexity
   public async getContent(checksum: string): Promise<Content | null> {
     const result = await this.contentRepo.find({ checksum });
 
@@ -59,6 +61,13 @@ export class ContentService implements PkStorageContent.IContentService {
 
     if (result.length < 1) {
       return null;
+    }
+
+    const content = new Content(result[0]);
+
+    if (content.maxOpen && content.openings !== undefined && content._id) {
+      content.openings += 1;
+      await this.contentRepo.update(content._id, content);
     }
 
     return new Content(result[0]);

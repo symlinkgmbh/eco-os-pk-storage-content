@@ -15,7 +15,8 @@
  * 
  */
 
- 
+
+
 import { MsContent } from "@symlinkde/eco-os-pk-models";
 
 export class Content implements MsContent.IContent {
@@ -23,12 +24,18 @@ export class Content implements MsContent.IContent {
   public key: string;
   public liveTime?: Date;
   public domain?: string;
+  public maxOpen?: number;
+  public openings?: number;
+  public _id?: string;
 
   constructor(content: MsContent.IContent) {
     this.checksum = content.checksum;
     this.key = content.key;
     this.liveTime = content.liveTime;
     this.domain = content.domain;
+    this.maxOpen = content.maxOpen;
+    this.openings = content.openings;
+    this._id = content._id;
   }
 
   public getChecksum(): string {
