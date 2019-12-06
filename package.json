@@ -1,6 +1,6 @@
 {
   "name": "@symlinkde/eco-os-pk-storage-content",
-  "version": "0.0.37",
+  "version": "0.0.38",
   "description": "Package containing storage adapter for content service.",
   "types": "lib/index.d.ts",
   "main": "lib/index.js",
